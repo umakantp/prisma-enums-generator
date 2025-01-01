@@ -1,10 +1,15 @@
 {
   "name": "prisma-enums-generator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generates enums from your Prisma schema to typescript or graphql files.",
   "main": "dist/bin.js",
   "types": "./dist/bin.d.ts",
   "module": "./dist/bin.mjs",
+  "exports": {
+    "require": "./dist/bin.js",
+    "import": "./dist/bin.mjs",
+    "default": "./dist/bin.mjs"
+  },
   "private": false,
   "files": [
     "dist"
@@ -13,7 +18,8 @@
     "prisma-enums-generator": "dist/bin.js"
   },
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs && npm run build:dts",
+    "build:clear": "rimraf dist",
+    "build": "npm run build:clear && npm run build:cjs && npm run build:esm && npm run build:dts",
     "build:cjs": "esbuild src/**/*.ts --bundle --outdir=dist --platform=node --format=cjs",
     "build:esm": "esbuild src/**/*.ts --bundle --out-extension:.js=.mjs --outdir=dist --platform=node --format=esm",
     "build:dts": "tsc --declaration --emitDeclarationOnly",
@@ -27,8 +33,9 @@
     "@prisma/generator-helper": "^6.1.0",
     "@types/node": "^22.10.3",
     "changesets": "^1.0.2",
-    "prettier": "^3.4.2",
+    "esbuild": "^0.24.2",
     "prisma": "^6.1.0",
+    "rimraf": "^6.0.1",
     "typescript": "^5.7.2"
   },
   "keywords": [
@@ -45,8 +52,5 @@
     "email": "umakantpatil7@gmail.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/umakantp/prisma-enums-generator#readme",
-  "dependencies": {
-    "esbuild": "^0.24.2"
-  }
+  "homepage": "https://github.com/umakantp/prisma-enums-generator#readme"
 }

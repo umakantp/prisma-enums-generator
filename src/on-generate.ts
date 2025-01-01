@@ -1,6 +1,5 @@
 import type { GeneratorOptions } from '@prisma/generator-helper';
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { format } from 'prettier';
 import { dirname } from 'path';
 import { parseConfig } from './config';
 
@@ -23,9 +22,7 @@ export async function onGenerate(options: GeneratorOptions) {
 
   // Use commas to separate the enum values means it is a typescript enum
   // Otherwise it is a prisma enum, could be used for graphql files.
-  const formattedCode = config.useComma ? await format(output.join(`,\n`), {
-    parser: 'typescript',
-  }) : output.join(`\n`);
+  const formattedCode = config.useComma ? output.join(`,\n`) : output.join(`\n`);
 
   writeFileSync(outputFile, formattedCode);
 }
