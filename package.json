@@ -1,7 +1,7 @@
 {
   "name": "prisma-enums-generator",
-  "version": "1.0.0",
-  "description": "Prisma enum generator",
+  "version": "1.1.0",
+  "description": "Generates enums from your Prisma schema to typescript or graphql files.",
   "main": "dist/bin.js",
   "types": "./dist/bin.d.ts",
   "module": "./dist/bin.mjs",
@@ -13,7 +13,10 @@
     "prisma-enums-generator": "dist/bin.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:esm && npm run build:cjs && npm run build:dts",
+    "build:cjs": "esbuild src/**/*.ts --bundle --outdir=dist --platform=node --format=cjs",
+    "build:esm": "esbuild src/**/*.ts --bundle --out-extension:.js=.mjs --outdir=dist --platform=node --format=esm",
+    "build:dts": "tsc --declaration --emitDeclarationOnly",
     "lint": "tsc"
   },
   "peerDependencies": {
@@ -43,5 +46,7 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/umakantp/prisma-enums-generator#readme",
-  "dependencies": {}
+  "dependencies": {
+    "esbuild": "^0.24.2"
+  }
 }
