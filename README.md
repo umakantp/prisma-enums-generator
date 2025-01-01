@@ -1,28 +1,28 @@
-# Prisma Type Generator
+# Prisma Enum Generator
 
-<!-- [![Build Status](https://travis-ci.org/broisnischal/prisma-type-generator.svg?branch=master)](https://travis-ci.org/broisnischal/prisma-type-generator) -->
+<!-- [![Build Status](https://travis-ci.org/umakantp/prisma-enum-generator.svg?branch=master)](https://travis-ci.org/umakantp/prisma-enum-generator) -->
 
-[![npm version](https://img.shields.io/npm/v/prisma-type-generator.svg)](https://www.npmjs.com/package/prisma-type-generator)
-![GitHub Repo stars](https://img.shields.io/github/stars/broisnischal/prisma-type-generator?style=social)
-![GitHub top language](https://img.shields.io/github/languages/top/broisnischal/prisma-type-generator?style=plastic)
-[![License](https://img.shields.io/npm/l/prisma-type-generator.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/prisma-enum-generator.svg)](https://www.npmjs.com/package/prisma-enum-generator)
+![GitHub Repo stars](https://img.shields.io/github/stars/umakantp/prisma-enum-generator?style=social)
+![GitHub top language](https://img.shields.io/github/languages/top/umakantp/prisma-enum-generator?style=plastic)
+[![License](https://img.shields.io/npm/l/prisma-enum-generator.svg)](https://opensource.org/licenses/MIT)
 
-Prisma type generator is a package that generates the type and interface that are available in your schema.
+Prisma enum generator is a package that generates the enum that are available in your schema.
 
 ## Installation
 
 ```bash
-npm install prisma-type-generator
+npm install prisma-enum-generator
 ```
 
 ## Usage
 
 ```prisma
 generator types {
-  provider = "prisma-type-generator"
+  provider = "prisma-enum-generator"
 }
 
-// output = "path"
+// output = "path to file"
 ```
 
 # Example
@@ -33,8 +33,9 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator types {
-  provider = "prisma-generator-types"
+generator enums {
+  provider = "prisma-enum-generator"
+  previewFeatures = ["isExport"]
 }
 
 datasource db {
@@ -68,23 +69,13 @@ model Profile {
   npx prisma generate
 ```
 
-> It will generate the following file, prisma/types/index.ts with the following code
+> It will default generate the following file, prisma/types/index.ts with the following code
 
 ```ts
-export interface User {
-  id: string;
-  name: string;
-  username: string;
+export enum UserType {
+  pro,
+  best,
 }
-
-export interface Profile {
-  id: string;
-  contact: number;
-  userId: string;
-}
-
-export const UserType = { pro: "pro", best: "best" } as const;
-export type UserType = (typeof UserType)[keyof typeof UserType];
 ```
 
 ### Contributing
@@ -97,11 +88,11 @@ If you like the project, please consider supporting us by giving a ⭐️ on Git
 
 ### Bugs
 
-If you find a bug, please file an issue on [our issue tracker on GitHub](https://github.com/broisnischal/prisma-fns/issues)
+If you find a bug, please file an issue on [our issue tracker on GitHub](https://github.com/umakantp/prisma-enum-generator/issues)
 
 ### License
 
-prisma-fns is open-source software licensed under the MIT [license](LICENSE).
+prisma-enum-generator is open-source software licensed under the MIT [license](LICENSE).
 
 ```
 

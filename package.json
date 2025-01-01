@@ -1,7 +1,7 @@
 {
-  "name": "prisma-type-generator",
-  "version": "1.5.0",
-  "description": "Prisma type generator",
+  "name": "prisma-enum-generator",
+  "version": "1.0.0",
+  "description": "Prisma enum generator",
   "main": "dist/bin.js",
   "types": "./dist/bin.d.ts",
   "module": "./dist/bin.mjs",
@@ -10,7 +10,7 @@
     "dist"
   ],
   "bin": {
-    "prisma-type-generator": "dist/bin.js"
+    "prisma-enum-generator": "dist/bin.js"
   },
   "scripts": {
     "build:": "tsc",
@@ -18,33 +18,33 @@
     "lint": "tsc"
   },
   "peerDependencies": {
-    "@prisma/client": "^5.8.1"
+    "@prisma/client": "^6.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.6.0",
-    "@prisma/client": "^5.9.1",
+    "@prisma/client": "^6.1.0",
     "@prisma/generator-helper": "^5.9.1",
     "@types/node": "^20.11.17",
     "changesets": "^1.0.2",
     "prettier": "^3.2.5",
-    "prisma": "^5.9.1",
+    "prisma": "^6.1.0",
     "typescript": "^5.3.3",
     "tsup": "^8.0.2"
   },
   "keywords": [
     "prisma",
     "typescript",
-    "prisma-types",
-    "types",
-    "interface",
-    "database"
+    "prisma-enums",
+    "enums",
+    "enum",
+    "graphql"
   ],
   "author": {
-    "name": "Nischal",
-    "url": "https://github.com/broisnischal/prisma-type-generator",
-    "email": "neeswebservice@gmail.com"
+    "name": "Umakant Patil",
+    "url": "https://github.com/umakantp/prisma-enum-generator",
+    "email": "umakantpatil7@gmail.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/broisnischal/prisma-type-generator#readme",
+  "homepage": "https://github.com/umakantp/prisma-enum-generator#readme",
   "dependencies": {}
 }

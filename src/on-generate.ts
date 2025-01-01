@@ -1,50 +1,28 @@
-import type { GeneratorOptions } from "@prisma/generator-helper";
-import { mkdirSync, writeFileSync } from "node:fs";
-import { format } from "prettier";
-import { getTypeScriptType } from "./util";
+import type { GeneratorOptions } from '@prisma/generator-helper';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { format } from 'prettier';
+import { dirname } from 'path';
 
 export async function onGenerate(options: GeneratorOptions) {
-  let exportedTypes = "";
-  const dataModel = options.dmmf.datamodel;
+  const enums = options.dmmf.datamodel.enums;
+  const outputFile = options.generator.output?.value ?? './types/index.ts';
+  const isExport = !!options.generator.previewFeatures.find(f => f === 'isExport')
 
-  for (const model of dataModel.models) {
-    exportedTypes += `export interface ${model.name} {\n`;
+  const output = enums.map(e => {
+    let enumString = isExport ? `export enum ${e.name} = {\n` : `enum ${e.name} = {\n`;
+    e.values.forEach(({ name: value }) => {
+      enumString += `  ${value},\n`;
+    });
+    enumString += `}\n\n`;
 
-    const scalarAndEnumFields = model.fields.filter((field) =>
-      ["scalar", "enum"].includes(field.kind)
-    );
-
-    for (const field of scalarAndEnumFields) {
-      const typeScriptType = getTypeScriptType(field.type);
-      const nullability = field.isRequired ? "" : "| null";
-      const list = field.isList ? "[]" : "";
-
-      exportedTypes += `${field.name}: ${typeScriptType}${nullability}${list};\n`;
-    }
-
-    exportedTypes += "}\n\n";
-  }
-
-  for (const enumType of dataModel.enums) {
-    exportedTypes += `export const ${enumType.name} = {`;
-
-    for (const enumValue of enumType.values) {
-      exportedTypes += `${enumValue.name}: "${enumValue.name}",\n`;
-    }
-
-    exportedTypes += "} as const;\n";
-
-    exportedTypes += `export type ${enumType.name} = (typeof ${enumType.name})[keyof typeof ${enumType.name}];\n\n`;
-  }
-
-  const outputDir = options.generator.output?.value ?? "./types";
-  const fullLocaltion = `${outputDir}/index.ts`;
-
-  mkdirSync(outputDir, { recursive: true });
-
-  const formattedCode = await format(exportedTypes, {
-    parser: "typescript",
+    return enumString;
   });
 
-  writeFileSync(fullLocaltion, formattedCode);
+  mkdirSync(dirname(outputFile), { recursive: true });
+
+  const formattedCode = await format(output.join(`\n`), {
+    parser: 'typescript',
+  });
+
+  writeFileSync(outputFile, formattedCode);
 }
