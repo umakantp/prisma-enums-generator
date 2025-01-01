@@ -6,7 +6,7 @@ generator client {
 }
 
 generator types {
-  provider = "prisma-generator-types"
+  provider = "prisma-enum-generator"
 }
 
 datasource db {

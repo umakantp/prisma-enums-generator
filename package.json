@@ -1,5 +1,5 @@
 {
-  "name": "prisma-enum-generator",
+  "name": "prisma-enums-generator",
   "version": "1.0.0",
   "description": "Prisma enum generator",
   "main": "dist/bin.js",
@@ -10,7 +10,7 @@
     "dist"
   ],
   "bin": {
-    "prisma-enum-generator": "dist/bin.js"
+    "prisma-enums-generator": "dist/bin.js"
   },
   "scripts": {
     "build:": "tsc",
@@ -41,10 +41,10 @@
   ],
   "author": {
     "name": "Umakant Patil",
-    "url": "https://github.com/umakantp/prisma-enum-generator",
+    "url": "https://github.com/umakantp/prisma-enums-generator",
     "email": "umakantpatil7@gmail.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/umakantp/prisma-enum-generator#readme",
+  "homepage": "https://github.com/umakantp/prisma-enums-generator#readme",
   "dependencies": {}
 }

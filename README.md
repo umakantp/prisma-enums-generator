@@ -1,25 +1,23 @@
-# Prisma Enum Generator
+# Prisma Enums Generator
 
-<!-- [![Build Status](https://travis-ci.org/umakantp/prisma-enum-generator.svg?branch=master)](https://travis-ci.org/umakantp/prisma-enum-generator) -->
-
-[![npm version](https://img.shields.io/npm/v/prisma-enum-generator.svg)](https://www.npmjs.com/package/prisma-enum-generator)
-![GitHub Repo stars](https://img.shields.io/github/stars/umakantp/prisma-enum-generator?style=social)
-![GitHub top language](https://img.shields.io/github/languages/top/umakantp/prisma-enum-generator?style=plastic)
-[![License](https://img.shields.io/npm/l/prisma-enum-generator.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/prisma-enums-generator.svg)](https://www.npmjs.com/package/prisma-enums-generator)
+![GitHub Repo stars](https://img.shields.io/github/stars/umakantp/prisma-enums-generator?style=social)
+![GitHub top language](https://img.shields.io/github/languages/top/umakantp/prisma-enums-generator?style=plastic)
+[![License](https://img.shields.io/npm/l/prisma-enums-generator.svg)](https://opensource.org/licenses/MIT)
 
 Prisma enum generator is a package that generates the enum that are available in your schema.
 
 ## Installation
 
 ```bash
-npm install prisma-enum-generator
+npm install prisma-enums-generator
 ```
 
 ## Usage
 
 ```prisma
 generator types {
-  provider = "prisma-enum-generator"
+  provider = "prisma-enums-generator"
 }
 
 // output = "path to file"
@@ -34,7 +32,7 @@ generator client {
 }
 
 generator enums {
-  provider = "prisma-enum-generator"
+  provider = "prisma-enums-generator"
   previewFeatures = ["isExport"]
 }
 
@@ -88,11 +86,11 @@ If you like the project, please consider supporting us by giving a ⭐️ on Git
 
 ### Bugs
 
-If you find a bug, please file an issue on [our issue tracker on GitHub](https://github.com/umakantp/prisma-enum-generator/issues)
+If you find a bug, please file an issue on [our issue tracker on GitHub](https://github.com/umakantp/prisma-enums-generator/issues)
 
 ### License
 
-prisma-enum-generator is open-source software licensed under the MIT [license](LICENSE).
+prisma-enums-generator is open-source software licensed under the MIT [license](LICENSE).
 
 ```
 
