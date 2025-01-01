@@ -5,8 +5,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator types {
-  provider = "prisma-enum-generator"
+generator enums {
+  provider = "prisma-enums-generator"
+  output = "./types/index.ts"
+  isExport = true
 }
 
 datasource db {

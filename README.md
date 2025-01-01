@@ -16,7 +16,7 @@ npm install prisma-enums-generator
 ## Usage
 
 ```prisma
-generator types {
+generator enums {
   provider = "prisma-enums-generator"
 }
 
