@@ -13,23 +13,20 @@
     "prisma-enums-generator": "dist/bin.js"
   },
   "scripts": {
-    "build:": "tsc",
-    "build": "tsup src/bin.ts --format cjs,esm --dts",
+    "build": "tsc",
     "lint": "tsc"
   },
   "peerDependencies": {
     "@prisma/client": ">=5.8.1 || >=6.1.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
     "@prisma/client": "^6.1.0",
     "@prisma/generator-helper": "^6.1.0",
     "@types/node": "^22.10.3",
     "changesets": "^1.0.2",
     "prettier": "^3.4.2",
     "prisma": "^6.1.0",
-    "typescript": "^5.7.2",
-    "tsup": "^8.3.5"
+    "typescript": "^5.7.2"
   },
   "keywords": [
     "prisma",

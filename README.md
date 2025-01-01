@@ -1,11 +1,11 @@
 # Prisma Enums Generator
 
+Generates enums from your prisma schema to typescript or graphql files. Note it doesn't generate the typescript or types for shapes.
+
 [![npm version](https://img.shields.io/npm/v/prisma-enums-generator.svg)](https://www.npmjs.com/package/prisma-enums-generator)
 ![GitHub Repo stars](https://img.shields.io/github/stars/umakantp/prisma-enums-generator?style=social)
 ![GitHub top language](https://img.shields.io/github/languages/top/umakantp/prisma-enums-generator?style=plastic)
 [![License](https://img.shields.io/npm/l/prisma-enums-generator.svg)](https://opensource.org/licenses/MIT)
-
-Prisma enum generator is a package that generates the enum that are available in your schema.
 
 ## Installation
 
@@ -18,9 +18,10 @@ npm install prisma-enums-generator
 ```prisma
 generator enums {
   provider = "prisma-enums-generator"
+  isExport = true
+  useComma = true
+  // output = "path to file"
 }
-
-// output = "path to file"
 ```
 
 # Example
@@ -33,7 +34,8 @@ generator client {
 
 generator enums {
   provider = "prisma-enums-generator"
-  previewFeatures = ["isExport"]
+  isExport = true
+  useComma = true
 }
 
 datasource db {
@@ -41,23 +43,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       String    @unique @default(uuid())
-  name     String
-  username String
-  Profile  Profile[]
-}
-
 enum UserType {
   pro
   best
 }
 
-model Profile {
-  id      String @unique @default(uuid())
-  contact Int
-  user    User   @relation(fields: [userId], references: [id])
-  userId  String
+model User {
+  id       String    @unique @default(uuid())
+  name     String
+  username String
+  type     UserType
 }
 ```
 

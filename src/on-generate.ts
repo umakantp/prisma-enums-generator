@@ -10,9 +10,9 @@ export async function onGenerate(options: GeneratorOptions) {
   const config = parseConfig(options.generator.config);
 
   const output = enums.map(e => {
-    let enumString = config.isExport ? `export enum ${e.name} = {\n` : `enum ${e.name} = {\n`;
+    let enumString = config.isExport ? `export enum ${e.name} {\n` : `enum ${e.name} {\n`;
     e.values.forEach(({ name: value }) => {
-      enumString += `  ${value},\n`;
+      enumString += `  ${value}` + (config.useComma ? `,\n` : `\n`);
     });
     enumString += `}\n\n`;
 
@@ -21,9 +21,11 @@ export async function onGenerate(options: GeneratorOptions) {
 
   mkdirSync(dirname(outputFile), { recursive: true });
 
-  const formattedCode = await format(output.join(`\n`), {
+  // Use commas to separate the enum values means it is a typescript enum
+  // Otherwise it is a prisma enum, could be used for graphql files.
+  const formattedCode = config.useComma ? await format(output.join(`,\n`), {
     parser: 'typescript',
-  });
+  }) : output.join(`\n`);
 
   writeFileSync(outputFile, formattedCode);
 }
